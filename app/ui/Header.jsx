@@ -40,7 +40,7 @@ const Header = ({ setUserObject }) => {
   // };
 
   return (
-    <header className="bg-gray-700 p-10 flex justify-center items-center border-b-4 border-black relative">
+    <header className="bg-customGray p-10 flex justify-center items-center border-b-4 border-black relative">
       <Image
         src={logo}
         height={75}
@@ -53,6 +53,24 @@ const Header = ({ setUserObject }) => {
         // className="hidden md:block"
         alt=""
       />
+      <div className="absolute bottom-2.5 right-2.5 flex flex-col items-center">
+        <div className="text-lg font-bold mt-1.5 mb-1.5 text-white">
+          Total Visits:
+        </div>
+        <a
+          className="inline-flex items-center justify-center px-4 py-2 border border-blue-500 text-blue-500 text-base font-medium rounded-md hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          tabIndex="0"
+          href="#outlined-buttons"
+        >
+          Log Out
+          <span className="MuiTouchRipple-root"></span>
+        </a>
+      </div>
+      {/* <Button
+        onClick={logOut}
+        variant="outlined"
+        href="#outlined-buttons"
+      ></Button> */}
     </header>
 
     //   {isAuthenticated && (
@@ -60,9 +78,6 @@ const Header = ({ setUserObject }) => {
     //       {user?.picture && (
     //         <>
     //           <ProfileImageStyled src={user.picture} alt="Profile" />
-    //           <VisitCounterStyled>
-    //             Total Visits: {visitCount}
-    //           </VisitCounterStyled>
     //         </>
     //       )}
     //       <Button onClick={logOut} variant="outlined" href="#outlined-buttons">
