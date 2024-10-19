@@ -1,6 +1,7 @@
-import Header from "";
+import Header from "../ui/Header";
+
 const Customers = () => {
-  return <div>Customers</div>;
+  return <Header />;
 };
 
 export default Customers;
