@@ -1,9 +1,14 @@
+import Link from "next/link";
+
 export default async function Page() {
   return (
-    <div className="content" data-testid="content">
-      <div className="center-container" data-testid="center-container">
-        <section className="intro" data-testid="intro">
-          <h2>About AI Companion</h2>
+    <div data-testid="content">
+      <div
+        className="max-w-[65%] mx-auto bg-white p-5 shadow-md"
+        data-testid="center-container"
+      >
+        <section data-testid="intro">
+          <h2 className="text-2xl font-bold py-10">About AI Companion</h2>
           <p>
             AI Companion is a comprehensive service designed to streamline your
             professional tasks with the power of AI. Our current features
@@ -12,51 +17,57 @@ export default async function Page() {
             toolset to better serve your needs.
           </p>
         </section>
-        <section className="instructions" data-testid="instructions">
-          <h2>How to Use AI Companion</h2>
-          <ul>
+        <section data-testid="instructions">
+          <h2 className="text-2xl font-bold py-10">How to Use AI Companion</h2>
+          <ul className="list-disc pl-5">
             <li>
-              <strong>Update Resume:</strong> Navigate to the
-              {/* <Link to="/resume" data-testid="link-instructions-resume">
-                {" "}
+              <strong>Update Resume:</strong> Navigate to the{" "}
+              <Link
+                className="hover:text-blue-600 text-blue-500"
+                href="/dashboard/update-resume"
+                data-testid="link-instructions-resume"
+              >
                 Update Resume
-              </Link>{" "} */}
+              </Link>{" "}
               page, fill in your professional details, and let our AI generate a
               polished resume for you.
             </li>
             <br />
             <li>
-              <strong>Create Cover Letter:</strong> Visit the
-              {/* <Link
-                to="/cover-letter"
+              <strong>Create Cover Letter:</strong> Visit the{" "}
+              <Link
+                className="hover:text-blue-600 text-blue-500"
+                href="/dashboard/cover-letter"
                 data-testid="link-instructions-cover-letter"
               >
-                {" "}
                 Create Cover Letter
-              </Link>{" "} */}
+              </Link>{" "}
               page, provide your resume and job description, and receive a
               tailored cover letter in minutes.
             </li>
             <br />
             <li>
-              <strong>Extract Audio from Video:</strong> Go to the
-              {/* <Link to="/transcribe" data-testid="link-instructions-transcribe">
-                {" "}
-                Extract Audio from Video
-              </Link>{" "} */}
+              <strong>Extract Audio from Video:</strong> Go to the{" "}
+              <Link
+                className="hover:text-blue-600 text-blue-500"
+                href="/dashboard/transcribe-audio"
+                data-testid="link-instructions-transcribe"
+              >
+                Extract Audio
+              </Link>{" "}
               page, upload your video, and get an accurate transcription of the
               audio.
             </li>
             <br />
             <li>
-              <strong>Create AI Images:</strong> Head over to the
-              {/* <Link
-                to="/image-creation"
+              <strong>Create AI Images:</strong> Head over to the{" "}
+              <Link
+                className="hover:text-blue-600 text-blue-500"
+                href="/dashboard/image-generation"
                 data-testid="link-instructions-image-creation"
               >
-                {" "}
                 Create AI Images
-              </Link>{" "} */}
+              </Link>{" "}
               page, describe the image you want, and let our AI bring it to
               life.
             </li>
