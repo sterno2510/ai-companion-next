@@ -1,5 +1,5 @@
 const TranscribeAudio = () => {
-  return <div>update your resume</div>;
+  return <div>transcribe</div>;
 };
 
 export default TranscribeAudio;
