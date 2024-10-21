@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         headerGray: "#404040",
         sideBarGray: "#7F7F7F",
+        mainPageGray: "#f0f0f0",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
