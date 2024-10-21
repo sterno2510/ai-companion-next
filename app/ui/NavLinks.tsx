@@ -15,12 +15,27 @@ const links = [
   { name: "Home", href: "/dashboard" },
   //   { name: "Home", href: "/dashboard", icon: HomeIcon },
   {
-    name: "Invoices",
+    name: "Update Resume",
     href: "/dashboard/invoices",
     // icon: DocumentDuplicateIcon,
   },
   //   { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
-  { name: "Customers", href: "/dashboard/customers" },
+  { name: "Create Cover Letter", href: "/dashboard/customers" },
+  {
+    name: "Transcribe Audio from Video",
+    href: "/dashboard/invoices",
+    // icon: DocumentDuplicateIcon,
+  },
+  {
+    name: "Create AI Generated Images",
+    href: "/dashboard/invoices",
+    // icon: DocumentDuplicateIcon,
+  },
+  {
+    name: "Create SQL Queries",
+    href: "/dashboard/invoices",
+    // icon: DocumentDuplicateIcon,
+  },
 ];
 
 export default function NavLinks() {
@@ -38,7 +53,8 @@ export default function NavLinks() {
               "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
               {
                 "bg-sky-100 text-blue-600": pathname === link.href,
-              }
+              },
+              "mb-7"
             )}
           >
             {/* <LinkIcon className="w-6" /> */}
