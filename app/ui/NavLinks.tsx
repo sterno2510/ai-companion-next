@@ -13,27 +13,27 @@ import clsx from "clsx";
 // Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: "Home", href: "/dashboard" },
-  //   { name: "Home", href: "/dashboard", icon: HomeIcon },
+  // { name: "Home", href: "/dashboard", icon: HomeIcon },
   {
     name: "Update Resume",
-    href: "/dashboard/invoices",
+    href: "/dashboard/update-resume",
     // icon: DocumentDuplicateIcon,
   },
   //   { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
-  { name: "Create Cover Letter", href: "/dashboard/customers" },
+  { name: "Create Cover Letter", href: "/dashboard/cover-letter" },
   {
     name: "Transcribe Audio from Video",
-    href: "/dashboard/invoices",
+    href: "/dashboard/transcribe-audio",
     // icon: DocumentDuplicateIcon,
   },
   {
     name: "Create AI Generated Images",
-    href: "/dashboard/invoices",
+    href: "/dashboard/image-generation",
     // icon: DocumentDuplicateIcon,
   },
   {
     name: "Create SQL Queries",
-    href: "/dashboard/invoices",
+    href: "/dashboard/sql-queries",
     // icon: DocumentDuplicateIcon,
   },
 ];
@@ -50,7 +50,7 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
+              "flex h-[48px] grow items-center justify-center gap-2 rounded-md  p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
               {
                 "bg-sky-100 text-blue-600": pathname === link.href,
               },

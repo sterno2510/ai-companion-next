@@ -4,20 +4,18 @@ export const experimental_ppr = true;
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col h-screen">
-      {/* Header at the top */}
+    <div>
       <Header />
-
-      <div className="flex flex-grow md:flex-row">
-        {/* Sidebar (NavLinks) on the left */}
-        <aside className="w-full md:w-64 bg-gray-100 p-4">
+      <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
+        <div
+          className="bg-sideBarGray w-full flex-none md:w-64  w-1/8 text-white p-5 border-r-4 border-black"
+          data-testid="sidebar"
+        >
           <NavLinks />
-        </aside>
-
-        {/* Main content */}
-        <main className="flex-grow p-6 md:overflow-y-auto md:p-12">
+        </div>
+        <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
           {children}
-        </main>
+        </div>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ const Header = ({ setUserObject }) => {
   // };
 
   return (
-    <header className="bg-customGray p-10 flex justify-center items-center border-b-4 border-black relative">
+    <header className="bg-headerGray p-10 flex justify-center items-center border-b-4 border-black relative">
       <Image
         src={logo}
         height={75}
