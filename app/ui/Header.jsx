@@ -16,7 +16,8 @@ import Image from "next/image";
 //   VisitCounterStyled,
 // } from "./HeaderStyledComponents";
 
-const Header = ({ setUserObject }) => {
+// const Header = ({ setUserObject }) => {
+const Header = () => {
   // const { logout, isAuthenticated, user } = useAuth0();
 
   // const [visitCount, setVisitCount] = useState(null);
