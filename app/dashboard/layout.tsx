@@ -1,6 +1,5 @@
 import Header from "../ui/Header";
 import NavLinks from "../ui/NavLinks";
-export const experimental_ppr = true;
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
