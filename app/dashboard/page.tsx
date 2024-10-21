@@ -71,6 +71,20 @@ export default async function Page() {
               page, describe the image you want, and let our AI bring it to
               life.
             </li>
+            <br />
+            <li>
+              <strong>Create SQL Queris:</strong> Head over to the{" "}
+              <Link
+                className="hover:text-blue-600 text-blue-500"
+                href="/dashboard/sql-queries"
+                data-testid="link-instructions-sql-queries"
+              >
+                Create SQL Queries
+              </Link>{" "}
+              page, provide your table names and schema, a description of the
+              SQL Query you want to generate in plain english, and let our AI
+              bring it to life.
+            </li>
           </ul>
         </section>
       </div>
