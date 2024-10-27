@@ -1,5 +1,7 @@
+import Resume from "@/app/ui/Resume";
+
 const UpdateResume = () => {
-  return <div>update your resume</div>;
+  return <Resume />;
 };
 
 export default UpdateResume;
