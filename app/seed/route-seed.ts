@@ -1,4 +1,4 @@
-// UNCOMMENT THE CODE BELOW TO SEED DB FOR DEVELOPMENT PURPOSES
+// UNCOMMENT THE CODE BELOW AND RENAME FILE TO ROUTE.TS TO SEED DB FOR DEVELOPMENT PURPOSES
 
 // import { db } from "@vercel/postgres";
 // import { resumes, users } from "../lib/placeholder-data"; // Assuming you have resumes and users data
