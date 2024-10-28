@@ -9,7 +9,7 @@ export async function fetchVisitCount(userId: string) {
       FROM users 
       WHERE id = ${userId}
     `;
-    console.log("what is the data?", data);
+
     if (data.rowCount === 0) {
       console.error(`No user found with ID: ${userId}`);
       throw new Error("User not found.");

@@ -4,7 +4,7 @@ import NavLinks from "../ui/NavLinks";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      <Header />
+      <Header login={true} />
       <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
         <div
           className="bg-sideBarGray w-full flex-none md:w-80 w-1/8 text-white p-5 border-r-4 border-black"
