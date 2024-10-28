@@ -65,7 +65,7 @@ const Header = async () => {
         <a
           className="inline-flex items-center justify-center px-4 py-2 border border-blue-500 text-blue-500 text-base font-medium rounded-md hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           // tabIndex="0"
-          href="#outlined-buttons"
+          href="/api/auth/logout"
         >
           Log Out
           {/* <span className="MuiTouchRipple-root"></span> */}
