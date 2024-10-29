@@ -6,10 +6,13 @@ import resumeIcon from "./lib/assets/resumeIcon.svg";
 import imageIcon from "./lib/assets/imageIcon.webp";
 import sqlIcon from "./lib/assets/sqlIcon.webp";
 import audioIcon from "./lib/assets/audioIcon.png";
+import { oxanium } from "./ui/fonts";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen relative overflow-hidden">
+    <div
+      className={`${oxanium.className} flex flex-col min-h-screen relative overflow-hidden`}
+    >
       <Header login={false} />
 
       <div className="relative flex-grow flex items-center justify-center">
