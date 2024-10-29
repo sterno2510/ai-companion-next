@@ -1,101 +1,58 @@
-// "use client";
-// import React, { useState, useEffect } from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import axios from "axios";
-// import Button from "@mui/material/Button";
-// import PropTypes from "prop-types";
 import logo from "../lib/assets/ailogo.png";
 import slogan from "../lib/assets/slogan.png";
 import Image from "next/image";
 import { fetchVisitCount } from "../lib/data";
-// import {
-//   HeaderContainerStyled,
-//   LogoStyled,
-//   SloganStyled,
-//   LogoutButtonContainerStyled,
-//   ProfileImageStyled,
-//   VisitCounterStyled,
-// } from "./HeaderStyledComponents";
+import { getSession } from "@auth0/nextjs-auth0";
 
-// const Header = ({ setUserObject }) => {
-const Header = async () => {
+interface HeaderProps {
+  login: boolean;
+}
+const Header: React.FC<HeaderProps> = async ({ login }) => {
   const visitCount = await fetchVisitCount(
     "410544b2-4001-4271-9855-fec4b6a6442a"
   );
-  // const { logout, isAuthenticated, user } = useAuth0();
-
-  // const [visitCount, setVisitCount] = useState(null);
-
-  // useEffect(() => {
-  //   if (user) {
-  //     axios
-  //       .get(`/update?name=${user.name}&email=${user.email}`)
-  //       .then((response) => {
-  //         setUserObject(response.data);
-  //         setVisitCount(response.data.visitCount);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [isAuthenticated]);
-
-  // const logOut = () => {
-  //   logout({ logoutParams: { returnTo: window.location.origin } });
-  // };
+  let user;
+  const session = await getSession();
+  if (session && session.user) {
+    user = session.user;
+    console.log("user", user);
+  } else {
+    console.log("no user logged in");
+  }
 
   return (
-    <header className="bg-headerGray p-10 flex justify-center items-center border-b-4 border-black relative">
+    <header className="bg-headerGray p-10 flex flex-col md:flex-row justify-center items-center border-b-4 border-black relative">
       <Image
         src={logo}
         height={75}
-        // className="hidden md:block"
         alt="AI Companion Logo"
+        className="mb-4 md:mb-0"
       />
-      <Image
-        src={slogan}
-        height={75}
-        // className="hidden md:block"
-        alt=""
-      />
-      <div className="absolute bottom-2.5 right-2.5 flex flex-col items-center">
-        <div className="text-lg font-bold mt-1.5 mb-1.5 text-white">
-          Total Visits: {`${visitCount}`}
+      <Image src={slogan} height={75} alt="Slogan" className="mb-4 md:mb-0" />
+      {login && (
+        <div className="flex flex-col items-center md:absolute md:bottom-2.5 md:right-2.5">
+          {user && (
+            <Image
+              className="max-h-12 w-auto rounded-full mb-2"
+              src={user.picture}
+              height={60}
+              width={60}
+              alt="User profile pic"
+            />
+          )}
+          <div className="text-lg font-bold text-white mb-2">
+            Total Visits: {`${visitCount}`}
+          </div>
+          <a
+            className="inline-flex items-center justify-center px-4 py-2 border border-blue-500 text-blue-500 text-base font-medium rounded-md hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            href="/api/auth/logout"
+          >
+            Log Out
+          </a>
         </div>
-        <a
-          className="inline-flex items-center justify-center px-4 py-2 border border-blue-500 text-blue-500 text-base font-medium rounded-md hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          // tabIndex="0"
-          href="/api/auth/logout"
-        >
-          Log Out
-          {/* <span className="MuiTouchRipple-root"></span> */}
-        </a>
-      </div>
-      {/* <Button
-        onClick={logOut}
-        variant="outlined"
-        href="#outlined-buttons"
-      ></Button> */}
+      )}
     </header>
-
-    //   {isAuthenticated && (
-    //     <LogoutButtonContainerStyled>
-    //       {user?.picture && (
-    //         <>
-    //           <ProfileImageStyled src={user.picture} alt="Profile" />
-    //         </>
-    //       )}
-    //       <Button onClick={logOut} variant="outlined" href="#outlined-buttons">
-    //         Log Out
-    //       </Button>
-    //     </LogoutButtonContainerStyled>
-    //   )}
-    // </HeaderContainerStyled>
   );
 };
-
-// Header.propTypes = {
-//   setUserObject: PropTypes.func.isRequired,
-// };
 
 export default Header;
