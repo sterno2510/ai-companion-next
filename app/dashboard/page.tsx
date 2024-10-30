@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-
+// "bg-headerGray bg-opacity-70 rounded-lg shadow-lg p-6 max-w-sm sm:max-w-md lg:max-w-2xl";
 export default withPageAuthRequired(
   async function Page() {
     return (
-      <div data-testid="content">
-        <div
-          className="max-w-[65%] mx-auto bg-white p-5 shadow-md"
-          data-testid="center-container"
-        >
+      <div
+        className="bg-headerGray text-white bg-opacity-70 rounded-lg max-w-[65%] mx-auto p-5 shadow-lg "
+        data-testid="content"
+      >
+        <div data-testid="center-container">
           <section data-testid="intro">
             <h2 className="text-2xl font-bold py-10">About AI Companion</h2>
             <p>
