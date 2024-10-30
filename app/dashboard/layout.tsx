@@ -1,13 +1,7 @@
 import Header from "../ui/Header";
 import NavLinks from "../ui/NavLinks";
-import { AppRouterPageRoute, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import type { ReactNode } from "react";
 
-type LayoutProps = {
-  children: ReactNode;
-};
-
-const Layout = ({ children }: LayoutProps) => {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <Header login={true} />
@@ -26,8 +20,4 @@ const Layout = ({ children }: LayoutProps) => {
       </div>
     </div>
   );
-};
-
-export default withPageAuthRequired(Layout as unknown as AppRouterPageRoute, {
-  returnTo: "/dashboard",
-});
+}
