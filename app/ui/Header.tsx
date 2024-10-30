@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = async ({ login }) => {
   }
 
   return (
-    <header className="bg-headerGray p-10 flex flex-col md:flex-row justify-center items-center border-b-4 border-black relative">
+    <header className="z-10 bg-headerGray p-10 flex flex-col md:flex-row justify-center items-center border-b-4 border-black relative">
       <Image
         src={logo}
         height={75}
