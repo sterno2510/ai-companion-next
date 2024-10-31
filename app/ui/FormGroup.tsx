@@ -4,11 +4,11 @@ interface FormGroupProps {
   nameLabel: string;
   inputType: string;
   field: string;
-  formValue?: string;
-  changeFunction: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  formValue: string;
   placeHolder?: string;
+  changeFunction: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 
 const FormGroup: React.FC<FormGroupProps> = ({
