@@ -8,16 +8,19 @@ interface HeaderProps {
   login: boolean;
 }
 const Header: React.FC<HeaderProps> = async ({ login }) => {
-  const visitCount = await fetchVisitCount(
-    "410544b2-4001-4271-9855-fec4b6a6442a"
-  );
   let user;
+  let visitCount = 0;
   const session = await getSession();
+
   if (session && session.user) {
     user = session.user;
-    console.log("user", user);
+    console.log("User logged in:", user);
+
+    // Fetch visit count using the user's ID
+    visitCount = await fetchVisitCount(user.sid, user.name, user.email);
+    console.log("Visit count:", visitCount);
   } else {
-    console.log("no user logged in");
+    console.log("No user logged in");
   }
 
   return (

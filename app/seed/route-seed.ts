@@ -1,4 +1,4 @@
-// UNCOMMENT THE CODE BELOW AND RENAME FILE TO ROUTE.TS TO SEED DB FOR DEVELOPMENT PURPOSES
+// // UNCOMMENT THE CODE BELOW AND RENAME FILE TO ROUTE.TS TO SEED DB FOR DEVELOPMENT PURPOSES
 
 // import { db } from "@vercel/postgres";
 // import { resumes, users } from "../lib/placeholder-data"; // Assuming you have resumes and users data
@@ -10,9 +10,9 @@
 //   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 //   await client.sql`
 //     CREATE TABLE IF NOT EXISTS users (
-//       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+//       id TEXT PRIMARY KEY,  -- Changed from UUID to TEXT to accept sid
 //       name VARCHAR(255) NOT NULL,
-//       email TEXT NOT NULL UNIQUE,
+//       email TEXT NOT NULL,
 //       visitCount INT DEFAULT 1
 //     );
 //   `;
@@ -35,7 +35,7 @@
 //   await client.sql`
 //     CREATE TABLE IF NOT EXISTS resumes (
 //       id SERIAL PRIMARY KEY,
-//       user_id UUID NOT NULL,
+//       user_id TEXT NOT NULL,  -- Changed from UUID to TEXT to match users table
 //       new_resume TEXT NOT NULL,
 //       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 //       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
