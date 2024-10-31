@@ -1,6 +1,17 @@
 import React from "react";
 
-const FormGroup = ({
+interface FormGroupProps {
+  nameLabel: string;
+  inputType: string;
+  field: string;
+  formValue?: string;
+  changeFunction: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  placeHolder?: string;
+}
+
+const FormGroup: React.FC<FormGroupProps> = ({
   nameLabel,
   inputType,
   field,
@@ -9,9 +20,7 @@ const FormGroup = ({
   placeHolder = "Enter Input...",
 }) => (
   <div className="mb-5">
-    {" "}
     <label className="font-bold mb-1 block" htmlFor={field}>
-      {" "}
       {nameLabel}:
     </label>
     {field === "summary" ||
