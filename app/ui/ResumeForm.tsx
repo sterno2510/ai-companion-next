@@ -154,6 +154,7 @@ const Resume: React.FC = () => {
             field="fullName"
             formValue={formData.fullName}
             changeFunction={handleChange}
+            placeHolder="John Doe"
           />
           <FormGroup
             nameLabel="Email"
@@ -161,6 +162,7 @@ const Resume: React.FC = () => {
             field="email"
             formValue={formData.email}
             changeFunction={handleChange}
+            placeHolder="John.Doe@email.com"
           />
           <FormGroup
             nameLabel="Location"
@@ -168,6 +170,7 @@ const Resume: React.FC = () => {
             field="location"
             formValue={formData.location}
             changeFunction={handleChange}
+            placeHolder="City, State"
           />
           <FormGroup
             nameLabel="LinkedIn URL"
@@ -175,6 +178,7 @@ const Resume: React.FC = () => {
             field="linkedin"
             formValue={formData.linkedin}
             changeFunction={handleChange}
+            placeHolder="https://www.linkedin.com/in/johndoe"
           />
           <FormGroup
             nameLabel="Summary"
@@ -182,6 +186,7 @@ const Resume: React.FC = () => {
             field="summary"
             formValue={formData.summary}
             changeFunction={handleChange}
+            placeHolder="Enter a Summary..."
           />
           <FormGroup
             nameLabel="Skills"
@@ -189,6 +194,7 @@ const Resume: React.FC = () => {
             field="skills"
             formValue={formData.skills}
             changeFunction={handleChange}
+            placeHolder="Enter Skills..."
           />
 
           {formData.workExperience.map((experience, index) => (
@@ -203,6 +209,7 @@ const Resume: React.FC = () => {
                 field={`company-${index}`}
                 formValue={experience.company}
                 changeFunction={(e) => handleWorkExperienceChange(index, e)}
+                placeHolder="Enter Company Name..."
               />
               <FormGroup
                 nameLabel="Role"
@@ -210,6 +217,7 @@ const Resume: React.FC = () => {
                 field={`role-${index}`}
                 formValue={experience.role}
                 changeFunction={(e) => handleWorkExperienceChange(index, e)}
+                placeHolder="Enter Role..."
               />
               <FormGroup
                 nameLabel="Start Date"
@@ -217,6 +225,7 @@ const Resume: React.FC = () => {
                 field={`startDate-${index}`}
                 formValue={experience.startDate}
                 changeFunction={(e) => handleWorkExperienceChange(index, e)}
+                placeHolder="Enter Start Date (01/2020)"
               />
               <FormGroup
                 nameLabel="End Date"
@@ -224,6 +233,7 @@ const Resume: React.FC = () => {
                 field={`endDate-${index}`}
                 formValue={experience.endDate}
                 changeFunction={(e) => handleWorkExperienceChange(index, e)}
+                placeHolder="Enter End Date (01/2021)"
               />
               <FormGroup
                 nameLabel="Description"
@@ -231,6 +241,7 @@ const Resume: React.FC = () => {
                 field={`description-${index}`}
                 formValue={experience.description}
                 changeFunction={(e) => handleWorkExperienceChange(index, e)}
+                placeHolder="Enter a Job Description..."
               />
             </div>
           ))}
@@ -254,6 +265,7 @@ const Resume: React.FC = () => {
                 field={`school-${index}`}
                 formValue={edu.school}
                 changeFunction={(e) => handleEducationChange(index, e)}
+                placeHolder="Enter School Name..."
               />
               <FormGroup
                 nameLabel="Degree"
@@ -261,6 +273,7 @@ const Resume: React.FC = () => {
                 field={`degree-${index}`}
                 formValue={edu.degree}
                 changeFunction={(e) => handleEducationChange(index, e)}
+                placeHolder="Enter Degree..."
               />
               <FormGroup
                 nameLabel="Field of Study"
@@ -268,6 +281,7 @@ const Resume: React.FC = () => {
                 field={`fieldOfStudy-${index}`}
                 formValue={edu.fieldOfStudy}
                 changeFunction={(e) => handleEducationChange(index, e)}
+                placeHolder="Enter Field of Study..."
               />
               <FormGroup
                 nameLabel="Start Date"
@@ -275,6 +289,7 @@ const Resume: React.FC = () => {
                 field={`startDate-${index}`}
                 formValue={edu.startDate}
                 changeFunction={(e) => handleEducationChange(index, e)}
+                placeHolder="Enter Start Date (01/2020)"
               />
               <FormGroup
                 nameLabel="End Date"
@@ -282,6 +297,7 @@ const Resume: React.FC = () => {
                 field={`endDate-${index}`}
                 formValue={edu.endDate}
                 changeFunction={(e) => handleEducationChange(index, e)}
+                placeHolder="Enter End Date (01/2021)"
               />
             </div>
           ))}
