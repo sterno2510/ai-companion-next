@@ -16,9 +16,7 @@ const Header: React.FC<HeaderProps> = async ({ login }) => {
     user = session.user;
     console.log("User logged in:", user);
 
-    // Fetch visit count using the user's ID
     visitCount = await fetchVisitCount(user.sid, user.name, user.email);
-    console.log("Visit count:", visitCount);
   } else {
     console.log("No user logged in");
   }
