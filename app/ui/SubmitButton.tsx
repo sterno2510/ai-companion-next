@@ -19,14 +19,14 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
     disabled={loading}
     onClick={onClick}
     className={`w-fit px-4 py-2 my-2 rounded cursor-pointer bg-black text-white hover:bg-white hover:text-black
-      ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-600"}`}
+      ${loading ? "opacity-90 cursor-not-allowed" : "hover:bg-gray-600"}`}
   >
-    <div className="flex items-center">
+    <div className="flex items-center gap-2">
       {loading && (
         <div
           data-testid="spinner"
-          className="border-4 border-gray-300 border-l-black rounded-full w-5 h-5 animate-spin mr-2"
-          style={{ borderColor: "rgba(0, 0, 0, 0.1)" }}
+          className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
         />
       )}
       {children}
