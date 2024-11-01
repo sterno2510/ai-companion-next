@@ -2,10 +2,7 @@
 import SubmitButton from "./SubmitButton";
 import { useActionState } from "react";
 import { imageCreation } from "../lib/actions";
-interface State {
-  imageUrl: string | null;
-  updatedPrompt: string | null;
-}
+import { State } from "../lib/actions";
 import Image from "next/image";
 import { useFormStatus } from "react-dom";
 
@@ -20,7 +17,10 @@ function SubmitButtonWrapper() {
 }
 
 const ImageCreation = () => {
-  const initialState: State = { imageUrl: null, updatedPrompt: null };
+  const initialState: State = {
+    imageUrl: undefined,
+    updatedPrompt: undefined,
+  };
   const [state, formAction] = useActionState(imageCreation, initialState);
   console.log("stat", state);
 

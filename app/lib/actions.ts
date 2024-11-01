@@ -6,11 +6,11 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export type State = {
-  message?: string | null;
-  imageUrl?: string | null;
-  revised_prompt?: string | null;
-};
+export interface State {
+  imageUrl?: string;
+  updatedPrompt?: string;
+  message?: string;
+}
 
 export const imageCreation = async (prevState: State, formData: FormData) => {
   console.log("What is the query:", formData.get("imageQuery"));
