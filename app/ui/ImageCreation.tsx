@@ -1,67 +1,65 @@
-import React, { useState } from "react";
-import axios from "axios";
+// import React, { useState } from "react";
+// import axios from "axios";
+"use client";
 import SubmitButton from "./SubmitButton";
-
-// import {
-//   ContainerStyled,
-//   TitleStyled,
-//   InputStyled,
-//   ImageStyled,
-//   FormStyled,
-//   ImageContainer,
-// } from "./ImageCreatingStyledComponents";
+import { useActionState } from "react";
+import { imageCreation } from "../lib/actions";
 
 const ImageCreation = () => {
-  const [query, setQuery] = useState("");
-  const [imageData, setImageData] = useState(null);
-  const [submitting, setSubmitting] = useState(false);
+  const [state, formAction] = useActionState(imageCreation, "");
+  //   const [query, setQuery] = useState("");
+  //   const [imageData, setImageData] = useState(null);
+  //   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setSubmitting(true);
-    console.info("Image is being generated, please wait.");
-    axios
-      .post("/api/openai/image-creation", { data: query })
-      .then((response) => {
-        console.info("response", response);
-        setImageData(response.data.data[0]);
-        setSubmitting(false);
-      })
-      .catch((err) => {
-        console.info(err);
-      });
-  };
+  //   const handleSubmit = (event) => {
+  //     event.preventDefault();
+  //     setSubmitting(true);
+  //     console.info("Image is being generated, please wait.");
+  //     axios
+  //       .post("/api/openai/image-creation", { data: query })
+  //       .then((response) => {
+  //         console.info("response", response);
+  //         setImageData(response.data.data[0]);
+  //         setSubmitting(false);
+  //       })
+  //       .catch((err) => {
+  //         console.info(err);
+  //       });
+  //   };
 
   return (
-    <ContainerStyled>
-      <TitleStyled>Create an AI-Generated Image</TitleStyled>
+    <div className="flex flex-col items-center p-5 bg-[#f0f4f8] min-h-screen">
+      <div className="text-3xl font-bold text-[#333] mb-5">
+        Create an AI-Generated Image
+      </div>
       <div style={{ width: "75%", paddingBottom: "20px" }}>
         Please note that with the release of DALL·E 3, the model now takes in
         the default prompt provided and automatically re-write it for safety
         reasons, and to add more detail (more detailed prompts generally result
         in higher quality images).
       </div>
-      <FormStyled onSubmit={handleSubmit}>
-        <InputStyled
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+      <form className="flex flex-col items-center" action={formAction}>
+        <textarea
+          id="imageQuery"
+          name="imageQuery"
+          //   value={query}
+          //   onChange={(e) => setQuery(e.target.value)}
           placeholder="Enter a description for your image"
         />
-        <SubmitButton onClick={handleSubmit} type="button" loading={submitting}>
+        {/* <SubmitButton onClick={handleSubmit} type="button" loading={submitting}>
           Submit
-        </SubmitButton>
-      </FormStyled>
-      {imageData && (
-        <ImageContainer>
+        </SubmitButton> */}
+      </form>
+      {/* {imageData && (
+        <div className="w-3/4 flex flex-col items-center">
           <div>
             Updated prompt created by OpenAI:
             {imageData.revised_prompt}
           </div>
           <ImageStyled src={imageData.url} alt="Generated AI Image" />
-        </ImageContainer>
-      )}
-    </ContainerStyled>
+        </div>
+      )} */}
+    </div>
   );
 };
 
