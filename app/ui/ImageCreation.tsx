@@ -29,7 +29,7 @@ const ImageCreation = () => {
 
   return (
     <div className="flex flex-col items-center p-5 min-h-screen">
-      <div style={{ width: "100%", paddingBottom: "20px" }}>
+      <div className="pb-5">
         Please note that with the release of DALL·E 3, the model now takes in
         the default prompt provided and automatically re-write it for safety
         reasons, and to add more detail (more detailed prompts generally result
