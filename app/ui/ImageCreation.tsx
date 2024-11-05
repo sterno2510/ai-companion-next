@@ -6,7 +6,6 @@ import { State } from "../lib/actions";
 import Image from "next/image";
 import { useFormStatus } from "react-dom";
 
-// Create a new component for the submit button
 function SubmitButtonWrapper() {
   const { pending } = useFormStatus();
   return (
@@ -22,7 +21,6 @@ const ImageCreation = () => {
     updatedPrompt: undefined,
   };
   const [state, formAction] = useActionState(imageCreation, initialState);
-  console.log("stat", state);
 
   return (
     <div className="flex flex-col items-center p-5 min-h-screen">

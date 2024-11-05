@@ -2,9 +2,39 @@
 
 import OpenAI from "openai";
 import axios from "axios";
+import { getSession } from "@auth0/nextjs-auth0";
+
+export const getUser = async (user_id: string) => {
+  // use get session to get user_id, remove from front end
+  try {
+    const options = {
+      method: "GET",
+      url: `https://dev-qz6qtpf8evrwt4w5.us.auth0.com/api/v2/users/${user_id}`,
+      headers: {
+        authorization: `Bearer ${process.env.MGMT_API_ACCESS_TOKEN}`,
+      },
+    };
+
+    const response = await axios.request(options);
+    return response.data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+      throw error;
+    } else {
+      console.error("An unknown error occurred");
+      throw new Error("An unknown error occurred");
+    }
+  }
+};
+
+const session = await getSession();
+const user_id = session?.user.sub;
+const user = await getUser(user_id);
+const openAIKey = user.user_metadata?.openAiApiKey;
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: openAIKey,
 });
 
 export interface State {
@@ -14,7 +44,7 @@ export interface State {
 }
 
 export const imageCreation = async (prevState: State, formData: FormData) => {
-  console.log("What is the query:", formData.get("imageQuery"));
+  console.log("HOLIDAY", openAIKey);
   try {
     const bodyContent = formData.get("imageQuery");
     console.log("generating image");
@@ -35,8 +65,14 @@ export const imageCreation = async (prevState: State, formData: FormData) => {
   }
 };
 
-export const updateUser = async (user_id: string, apiKey: string) => {
-  console.log("what is the user id:", user_id);
+export interface ApiState {
+  apiKey?: string;
+}
+
+export const updateUser = async (prevState: ApiState, formData: FormData) => {
+  const session = await getSession();
+  const user_id = session?.user.sub;
+
   const options = {
     method: "PATCH",
     url: `https://dev-qz6qtpf8evrwt4w5.us.auth0.com/api/v2/users/${user_id}`,
@@ -46,7 +82,7 @@ export const updateUser = async (user_id: string, apiKey: string) => {
     },
     data: {
       user_metadata: {
-        openAiApiKey: "test api key",
+        openAiApiKey: formData.get("apiKey"),
       },
     },
   };
@@ -59,22 +95,4 @@ export const updateUser = async (user_id: string, apiKey: string) => {
     .catch(function (error) {
       console.error(error.response.data);
     });
-};
-
-export const getUser = async (user_id: string) => {
-  try {
-    const options = {
-      method: "GET",
-      url: `https://dev-qz6qtpf8evrwt4w5.us.auth0.com/api/v2/users/${user_id}`,
-      headers: {
-        authorization: `Bearer ${process.env.MGMT_API_ACCESS_TOKEN}`,
-      },
-    };
-
-    const response = await axios.request(options);
-    return response.data; // or response.data.user_metadata if you only want that
-  } catch (error) {
-    console.error(error.response.data);
-    throw error;
-  }
 };

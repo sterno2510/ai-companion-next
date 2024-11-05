@@ -6,17 +6,13 @@ import { getUser } from "../lib/actions";
 
 export default async function DashboardPage() {
   const session = await getSession();
-  const userInformation = await getUser(session.user.sub);
 
   if (!session) {
     redirect("/api/auth/login?returnTo=/dashboard");
   }
-  console.log(
-    "User logged in: in dashboard",
-    userInformation.user_metadata.openAiApiKey
-  );
-  // const showApiKeyModal = !userInformation.user_metadata.openAiApiKey;
-  const showApiKeyModal = true;
+  const userInformation = await getUser(session.user.sub);
+
+  const showApiKeyModal = !userInformation.user_metadata.openAiApiKey;
 
   return (
     <div
