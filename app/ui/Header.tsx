@@ -14,7 +14,6 @@ const Header: React.FC<HeaderProps> = async ({ login }) => {
 
   if (session && session.user) {
     user = session.user;
-    console.log("User logged in:", user);
 
     visitCount = await fetchVisitCount(user.sid, user.name, user.email);
   } else {
