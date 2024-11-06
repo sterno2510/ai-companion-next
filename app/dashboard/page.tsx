@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";
+import ApiKeymodal from "../ui/ApiKeyModal";
+import { getUser } from "../lib/actions";
 
 export default async function DashboardPage() {
   const session = await getSession();
+  const userInformation = await getUser(session?.user.sub);
 
   if (!session) {
     redirect("/api/auth/login?returnTo=/dashboard");
@@ -14,6 +17,10 @@ export default async function DashboardPage() {
       className="bg-headerGray text-white bg-opacity-70 rounded-lg max-w-[65%] mx-auto p-5 shadow-lg"
       data-testid="content"
     >
+      <ApiKeymodal
+        data-testid="api key modal"
+        apiKey={userInformation.user_metadata?.openAiApiKey}
+      />
       <div data-testid="center-container">
         <section data-testid="intro">
           <h2 className="text-2xl font-bold py-10">About AI Companion</h2>

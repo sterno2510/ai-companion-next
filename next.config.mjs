@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default {
+const nextConfig = {
   images: {
-    domains: [
-      "lh3.googleusercontent.com",
-      "oaidalleapiprodscus.blob.core.windows.net",
-    ], // Add any other domains as needed
+    remotePatterns: [
+      {
+        protocol: "https", // or '*' for any protocol
+        hostname: "**", // Allows images from any hostname
+      },
+    ],
   },
 };
+
+export default nextConfig;
