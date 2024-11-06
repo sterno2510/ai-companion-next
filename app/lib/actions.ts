@@ -6,14 +6,38 @@ import { getSession } from "@auth0/nextjs-auth0";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+export const getAccessToken = async () => {
+  const options = {
+    method: "POST",
+    url: "https://dev-qz6qtpf8evrwt4w5.us.auth0.com/oauth/token",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    data: new URLSearchParams({
+      grant_type: "client_credentials",
+      client_id: "NJ76XtCzfUyBT1Q7leyw0ObAETSOlw0j",
+      client_secret: process.env.AUTH0_CLIENT_SECRETID_FOR_MANAGEMENT_API || "",
+      audience: "https://dev-qz6qtpf8evrwt4w5.us.auth0.com/api/v2/",
+    }),
+  };
+
+  try {
+    const response = await axios.request(options);
+    return response.data.access_token;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const getUser = async (user_id: string) => {
   // use get session to get user_id, remove from front end
+  const MGMT_API_ACCESS_TOKEN = await getAccessToken();
+
   try {
     const options = {
       method: "GET",
       url: `https://dev-qz6qtpf8evrwt4w5.us.auth0.com/api/v2/users/${user_id}`,
       headers: {
-        authorization: `Bearer ${process.env.MGMT_API_ACCESS_TOKEN}`,
+        authorization: `Bearer ${MGMT_API_ACCESS_TOKEN}`,
       },
     };
 
