@@ -2,6 +2,7 @@
 import { useActionState } from "react";
 import { updateUser } from "../lib/actions";
 import { useEffect, useState } from "react";
+import SubmitButton from "./SubmitButton";
 
 const ApiKeymodal = ({ apiKey }) => {
   const initialState = {
@@ -19,8 +20,8 @@ const ApiKeymodal = ({ apiKey }) => {
   return (
     <>
       {showApiKeyModal && (
-        <div className="modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="modal-content bg-white text-black rounded-lg p-8 shadow-lg max-w-md w-full relative">
+        <div className="modal absolute inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50">
+          <div className="modal-content bg-headerGray text-white bg-opacity-100 rounded-lg p-8 shadow-lg max-w-md w-full relative">
             <h2 className="text-xl font-bold mb-4">
               Set Up Your OpenAI API Key
             </h2>
@@ -64,9 +65,9 @@ const ApiKeymodal = ({ apiKey }) => {
                 placeholder="Enter your OpenAI API key here"
               />
               <div className="flex justify-end">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                <SubmitButton className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                   Submit
-                </button>
+                </SubmitButton>
               </div>
             </form>
           </div>
