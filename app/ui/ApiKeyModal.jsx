@@ -27,7 +27,9 @@ const ApiKeymodal = ({ apiKey }) => {
             </h2>
             <p className="mb-4">
               To keep costs down and prevent misuse, each user must set their
-              own OpenAI API key. Follow these steps:
+              own OpenAI API key. Each new user to OpenAI gets a $5 credit that
+              is good for 3 months. (It takes a lot of use to go through that
+              credit) Follow these steps:
             </p>
             <ol className="list-decimal pl-5 mb-4">
               <li>
