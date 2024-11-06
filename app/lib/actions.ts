@@ -30,15 +30,6 @@ export const getUser = async (user_id: string) => {
   }
 };
 
-const session = await getSession();
-const user_id = session?.user.sub;
-const user = await getUser(user_id);
-const openAIKey = user.user_metadata?.openAiApiKey;
-
-const openai = new OpenAI({
-  apiKey: openAIKey,
-});
-
 export interface State {
   imageUrl?: string;
   updatedPrompt?: string;
@@ -46,6 +37,14 @@ export interface State {
 }
 
 export const imageCreation = async (prevState: State, formData: FormData) => {
+  const session = await getSession();
+  const user_id = session?.user.sub;
+  const user = await getUser(user_id);
+  const openAIKey = user.user_metadata?.openAiApiKey;
+
+  const openai = new OpenAI({
+    apiKey: openAIKey,
+  });
   console.log("HOLIDAY", openAIKey);
   try {
     const bodyContent = formData.get("imageQuery");
