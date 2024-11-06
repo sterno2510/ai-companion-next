@@ -6,21 +6,21 @@ import { getUser } from "../lib/actions";
 
 export default async function DashboardPage() {
   const session = await getSession();
+  const userInformation = await getUser(session?.user.sub);
 
   if (!session) {
     redirect("/api/auth/login?returnTo=/dashboard");
   }
-  const userInformation = await getUser(session.user.sub);
-
-  const showApiKeyModal = !userInformation.user_metadata.openAiApiKey;
 
   return (
     <div
       className="bg-headerGray text-white bg-opacity-70 rounded-lg max-w-[65%] mx-auto p-5 shadow-lg"
       data-testid="content"
     >
-      {showApiKeyModal && <ApiKeymodal />}
-
+      <ApiKeymodal
+        data-testid="api key modal"
+        apiKey={userInformation.user_metadata?.openAiApiKey}
+      />
       <div data-testid="center-container">
         <section data-testid="intro">
           <h2 className="text-2xl font-bold py-10">About AI Companion</h2>

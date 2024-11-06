@@ -3,6 +3,8 @@
 import OpenAI from "openai";
 import axios from "axios";
 import { getSession } from "@auth0/nextjs-auth0";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const getUser = async (user_id: string) => {
   // use get session to get user_id, remove from front end
@@ -95,4 +97,7 @@ export const updateUser = async (prevState: ApiState, formData: FormData) => {
     .catch(function (error) {
       console.error(error.response.data);
     });
+
+  revalidatePath("/dashboard/");
+  redirect("/dashboard/");
 };

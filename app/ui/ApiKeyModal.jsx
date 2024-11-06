@@ -1,8 +1,9 @@
 "use client";
 import { useActionState } from "react";
 import { updateUser } from "../lib/actions";
+import { useEffect, useState } from "react";
 
-const ApiKeymodal = () => {
+const ApiKeymodal = ({ apiKey }) => {
   const initialState = {
     apiKey: undefined,
   };
@@ -11,11 +12,9 @@ const ApiKeymodal = () => {
   const [showApiKeyModal, setShowApiKeyModal] = useState(false);
 
   useEffect(() => {
-    const userInformation = getUser(session.user.sub);
-
-    const showApiKeyModal = !userInformation.user_metadata.openAiApiKey;
+    const showApiKeyModal = !apiKey;
     setShowApiKeyModal(showApiKeyModal);
-  });
+  }, []);
 
   return (
     <>
@@ -63,8 +62,6 @@ const ApiKeymodal = () => {
                 type="text"
                 className="border p-2 rounded w-full mb-4"
                 placeholder="Enter your OpenAI API key here"
-                value={state.apiKey || ""}
-                onChange={(e) => setState({ ...state, apiKey: e.target.value })}
               />
               <div className="flex justify-end">
                 <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
