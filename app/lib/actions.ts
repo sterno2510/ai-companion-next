@@ -14,7 +14,7 @@ export const getAccessToken = async () => {
     data: new URLSearchParams({
       grant_type: "client_credentials",
       client_id: "NJ76XtCzfUyBT1Q7leyw0ObAETSOlw0j",
-      client_secret: process.env.AUTH0_CLIENT_SECRETID_FOR_MANAGEMENT_API,
+      client_secret: process.env.AUTH0_CLIENT_SECRETID_FOR_MANAGEMENT_API || "",
       audience: "https://dev-qz6qtpf8evrwt4w5.us.auth0.com/api/v2/",
     }),
   };

@@ -9,7 +9,7 @@ const ApiKeymodal = ({ apiKey }) => {
     apiKey: undefined,
   };
   const [state, formAction] = useActionState(updateUser, initialState);
-  console.log("state in apikey modal", state);
+  console.log(state);
   const [showApiKeyModal, setShowApiKeyModal] = useState(false);
 
   useEffect(() => {
