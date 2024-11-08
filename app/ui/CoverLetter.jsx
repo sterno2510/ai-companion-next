@@ -2,7 +2,7 @@
 // CONVERT THIS BAD TO TYPESCRIPT, NEED TO DEAL WITH COVERLETTERGENERATION
 import SubmitButton from "./SubmitButton";
 import { useActionState } from "react";
-import { CoverLetterState } from "../lib/actions";
+// import { CoverLetterState } from "../lib/actions";
 import { coverLetterGeneration } from "../lib/actions";
 import { useFormStatus } from "react-dom";
 // import createPDF from "./helpers/createPdf";
