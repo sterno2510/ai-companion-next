@@ -69,7 +69,7 @@ export const imageCreation = async (prevState: State, formData: FormData) => {
   const openai = new OpenAI({
     apiKey: openAIKey,
   });
-  console.log("HOLIDAY", openAIKey);
+
   try {
     const bodyContent = formData.get("imageQuery");
     console.log("generating image");
@@ -123,4 +123,55 @@ export const updateUser = async (prevState: ApiState, formData: FormData) => {
 
   revalidatePath("/dashboard/");
   redirect("/dashboard/");
+};
+
+export interface CoverLetterState {
+  coverLetter?: string;
+  jobDescription?: string;
+  resume?: string;
+}
+
+export const coverLetterGeneration = async (
+  prevState: CoverLetterState,
+  formData: FormData
+) => {
+  const session = await getSession();
+  const user_id = session?.user.sub;
+  const user = await getUser(user_id);
+  const openAIKey = user.user_metadata?.openAiApiKey;
+
+  const openai = new OpenAI({
+    apiKey: openAIKey,
+  });
+
+  try {
+    const jobDescription = formData.get("jobDescription");
+    const resume = formData.get("resume");
+    console.log("generating Cover Letter");
+
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are an expert in creating professional cover letters in HTML format.",
+        },
+        {
+          role: "user",
+          content: `Using this resume ${resume} and this job description ${jobDescription}, generate and return only a traditional one-page cove letter, not a resume. Do not include a header in the letter, start with dear..., Do not include \`\`\`html or \`\`\` at the beginning or end of the response. Ensure the response is clean HTML. Do not set a max width for the body element. There should be a .5inch margin around the resume, put this css in a div containing the entire cover letter, not the body. Make sure to include a <br> tag at the end of each paragraph.`,
+        },
+      ],
+      model: "gpt-3.5-turbo",
+      temperature: 0.7,
+      max_tokens: 3000,
+      top_p: 1,
+    });
+
+    const coverLetter = completion.choices[0].message.content;
+    console.log("give me the cover letter", coverLetter);
+    return { coverLetter };
+  } catch (error) {
+    console.error("Error generating Cover Letter:", error);
+    return { message: "Error generating Cover Letter" };
+  }
 };

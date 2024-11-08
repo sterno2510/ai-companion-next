@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/ui/ApiKeyModal.jsx"
+    "app/ui/ApiKeyModal.jsx",
+    "app/ui/CoverLetter.jsx"
   ],
   "exclude": ["node_modules"]
 }

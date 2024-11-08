@@ -1,12 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https", // or '*' for any protocol
-        hostname: "**", // Allows images from any hostname
-      },
-    ],
+    domains: [
+      "lh3.googleusercontent.com",
+      "oaidalleapiprodscus.blob.core.windows.net",
+      "s.gravatar.com",
+    ], // Add any other domains as needed
   },
 };
 
