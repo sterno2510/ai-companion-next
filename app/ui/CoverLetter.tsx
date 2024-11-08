@@ -1,48 +1,39 @@
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
-// import {
-//   ContainerStyled,
-//   TitleStyled,
-//   CoverLetterFormStyled,
-//   ButtonStyled,
-//   DangerousHtmlStyled,
-//   div,
-//   TextAreaStyled,
-//   LabelStyled,
-// } from "./FormStyledComponents";
 import SubmitButton from "./SubmitButton";
+import { useActionState } from "react";
+import { CoverLetterState } from "../lib/actions";
+import { coverLetterGeneration } from "../lib/actions";
+import { useFormStatus } from "react-dom";
 // import createPDF from "./helpers/createPdf";
 
+function SubmitButtonWrapper() {
+  const { pending } = useFormStatus();
+  return (
+    <SubmitButton type="submit" loading={pending}>
+      Generate Cover Letter
+    </SubmitButton>
+  );
+}
+
 const CoverLetterUI = () => {
-  const [coverLetter, setCoverLetter] = useState(null);
-  const [submitting, setSubmitting] = useState(false);
-  const [formData, setFormData] = useState({});
+  const initialState: CoverLetterState = {
+    jobDescription: "",
+    resume: "",
+    coverLetter: "",
+  };
+  const [state, formAction] = useActionState<CoverLetterState>(
+    coverLetterGeneration,
+    initialState
+  );
 
-  //   const handleChange = (e) => {
-  //     const { name, value } = e.target;
-  //     setFormData({ ...formData, [name]: value });
-  //   };
-
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     setSubmitting(true);
-  //     await axios
-  //       .post("/api/openai/cover-letter", formData)
-  //       .then((res) => {
-  //         setCoverLetter(res.data.content);
-  //       })
-  //       .then(() => {
-  //         setSubmitting(false);
-  //       })
-  //       .catch((err) => {
-  //         console.log(`The call to the cover letter route errored ${err}`);
-  //       });
-  //   };
-
+  console.log(state.coverLetter);
   return (
     <div className="flex flex-col items-center p-5 min-h-screen">
-      <form className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+      <form
+        action={formAction}
+        className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full"
+      >
         {" "}
         <div className="flex flex-col mb-5 w-full">
           <label
@@ -55,8 +46,8 @@ const CoverLetterUI = () => {
             className="p-2 mt-1 border border-gray-300 rounded-md min-h-[500px]"
             id="jobDescription"
             name="jobDescription"
-            // value={formData.jobDescription}
-            // onChange={handleChange}
+            placeholder="Paste the job description here"
+            style={{ color: "black" }}
             required
           />
         </div>
@@ -70,21 +61,19 @@ const CoverLetterUI = () => {
           <textarea
             className="p-2 mt-1 border border-gray-300 rounded-md min-h-[500px]"
             id="resume"
+            placeholder="Paste your resume here"
             name="resume"
-            // value={formData.resume}
-            // onChange={handleChange}
+            style={{ color: "black" }}
             required
           />
         </div>
-        <SubmitButton type="submit" loading={submitting}>
-          Generate Cover Letter
-        </SubmitButton>
+        <SubmitButtonWrapper />
       </form>
-      {coverLetter && (
+      {state.coverLetter && (
         <>
           <div
             className="mt-20 p-5 border border-gray-300 rounded-md"
-            dangerouslySetInnerHTML={{ __html: coverLetter }}
+            dangerouslySetInnerHTML={{ __html: state.coverLetter }}
           />
           {/* <ButtonStyled
             type="button"
