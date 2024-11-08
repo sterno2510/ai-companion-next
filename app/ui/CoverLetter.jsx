@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
+// CONVERT THIS BAD TO TYPESCRIPT, NEED TO DEAL WITH COVERLETTERGENERATION
 import SubmitButton from "./SubmitButton";
 import { useActionState } from "react";
-import { CoverLetterState } from "../lib/actions";
 import { coverLetterGeneration } from "../lib/actions";
 import { useFormStatus } from "react-dom";
-// import createPDF from "./helpers/createPdf";
+import createPDF from "./helpers/convertToPDF";
 
 function SubmitButtonWrapper() {
   const { pending } = useFormStatus();
@@ -17,15 +16,13 @@ function SubmitButtonWrapper() {
 }
 
 const CoverLetterUI = () => {
-  const initialState: CoverLetterState = {
+  const initialState = {
     jobDescription: "",
     resume: "",
     coverLetter: "",
   };
-  const [state, formAction] = useActionState<CoverLetterState>(
-    coverLetterGeneration,
-    initialState
-  );
+  const [state, formAction] =
+    useActionState < CoverLetterState > (coverLetterGeneration, initialState);
 
   console.log(state.coverLetter);
   return (
@@ -75,14 +72,15 @@ const CoverLetterUI = () => {
             className="mt-20 p-5 border border-gray-300 rounded-md"
             dangerouslySetInnerHTML={{ __html: state.coverLetter }}
           />
-          {/* <ButtonStyled
+          <button
+            className="w-fit px-5 py-2.5 my-2 border-none rounded-md bg-gray-700 text-white cursor-pointer hover:bg-gray-500"
             type="button"
             onClick={() => {
               createPDF(coverLetter);
             }}
           >
             Download your Cover Letter as a PDF
-          </ButtonStyled> */}
+          </button>
         </>
       )}
     </div>
