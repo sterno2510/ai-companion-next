@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/ui/ApiKeyModal.jsx",
-    "app/ui/CoverLetter.jsx"
+    "app/ui/CoverLetter.jsx",
+    "app/ui/ResumeForm.jsx"
   ],
   "exclude": ["node_modules"]
 }
