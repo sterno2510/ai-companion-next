@@ -18,4 +18,4 @@ const UpdateResume = async () => {
   );
 };
 
-export default withPageAuthRequired(UpdateResume, { returnTo: "/dashboard" });
+export default UpdateResume;
