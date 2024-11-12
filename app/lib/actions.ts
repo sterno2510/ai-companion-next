@@ -158,7 +158,7 @@ export const coverLetterGeneration = async (
         },
         {
           role: "user",
-          content: `Using this resume ${resume} and this job description ${jobDescription}, generate and return only a traditional one-page cove letter, not a resume. Do not include a header in the letter, start with dear..., Do not include \`\`\`html or \`\`\` at the beginning or end of the response. Ensure the response is clean HTML. Do not set a max width for the body element. There should be a .5inch margin around the resume, put this css in a div containing the entire cover letter, not the body. Make sure to include a <br> tag at the end of each paragraph.`,
+          content: `Using this resume ${resume} and this job description ${jobDescription}, generate and return only a traditional one-page cover letter in clean HTML format. Do not include any markdown or code block markers like \`\`\`html or \`\`\`. The cover letter should start with 'Dear...' and include appropriate HTML elements with a <br> tag at the end of each paragraph. Wrap the entire cover letter in a <div> with CSS for a .5-inch margin around it.`,
         },
       ],
       model: "gpt-3.5-turbo",
@@ -167,8 +167,11 @@ export const coverLetterGeneration = async (
       top_p: 1,
     });
 
-    const coverLetter = completion.choices[0].message.content;
-    console.log("give me the cover letter", coverLetter);
+    let coverLetter = completion.choices[0].message.content;
+    if (coverLetter) {
+      coverLetter = coverLetter.replace(/```html|```/g, "");
+    }
+
     return { coverLetter };
   } catch (error) {
     console.error("Error generating Cover Letter:", error);

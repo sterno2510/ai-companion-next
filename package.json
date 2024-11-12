@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "next": "15.0.2",
     "openai": "^4.69.0",
+    "puppeteer": "^23.7.1",
     "react": "^18",
     "react-dom": "^18",
     "react-social-icons": "^6.18.0"
