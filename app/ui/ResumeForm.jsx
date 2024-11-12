@@ -109,7 +109,7 @@ const Resume = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-5">
+    <div className="max-w-5xl md:max-w-5xl max-w-full mx-auto p-5">
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <FormGroup
           nameLabel="Full Name"
