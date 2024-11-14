@@ -224,3 +224,52 @@ export const createResume = async (formData: FormData) => {
     return { message: "Error generating Cover Letter" };
   }
 };
+
+interface QueryInput {
+  query: string;
+  tables: { id: string; tableSchema: string }[];
+}
+
+export const generateSQLQuery = async (query: QueryInput) => {
+  const session = await getSession();
+  const user_id = session?.user.sub;
+  const user = await getUser(user_id);
+  const openAIKey = user.user_metadata?.openAiApiKey;
+
+  const openai = new OpenAI({
+    apiKey: openAIKey,
+  });
+
+  const SQLquery = query.query;
+
+  const tables = query.tables.map((table) => ({
+    ...table,
+    tableSchema: table.tableSchema.split("\n").filter(Boolean),
+  }));
+
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are an expert an expert data analyst with vast experience creating SQL Queries.",
+        },
+        {
+          role: "user",
+          content: `Using these data tables where the data table name is tableName and the schema is tableSchema which is an array of the columns in the table ${JSON.stringify(
+            tables
+          )}, generate a SQL Query based on this description: ${SQLquery}. Return the actual SQL Query statement only, in this HTML Format so it can be easily displayed <div>Your Generated SQL Query is:<br/><b>SQL Query Goes here</b><div> with the : followed by the actual query inside the <b> tags. Do not include \`\`\`html or \`\`\` at the beginning or end of the response. Ensure the response is clean HTML. Do not set a max width for the body element.`,
+        },
+      ],
+      model: "gpt-3.5-turbo",
+      temperature: 0.7,
+      max_tokens: 3000,
+      top_p: 1,
+    });
+    return completion.choices[0].message.content;
+  } catch (error) {
+    console.error("Error generating SQL Query", error);
+    return "Error generating SQL Query";
+  }
+};
